@@ -23,10 +23,6 @@ export const signInSchema = z.object({
   password: z
     .string()
     .min(8, { message: "Password not long enough. Min 8 characters." }),
-  username: z
-    .string()
-    .min(3, { message: "Must be at least 3 characters" })
-    .max(15, { message: "Max 15 characters." }),
 });
 
 export function SignInForm() {
@@ -37,7 +33,6 @@ export function SignInForm() {
     defaultValues: {
       email: "",
       password: "",
-      username: "",
     },
   });
 
@@ -53,7 +48,7 @@ export function SignInForm() {
       {
         onSuccess: () => {
           toast("Signed in!");
-          router.push("/");
+          router.replace("/");
         },
         onError: () => {
           toast("Something went wrong!");
