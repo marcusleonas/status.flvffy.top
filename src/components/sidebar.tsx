@@ -9,6 +9,10 @@ const link: { href: string; text: string }[] = [
     href: "/register",
     text: "Register",
   },
+  {
+    href: "/signin",
+    text: "Sign In",
+  },
 ];
 
 export function Sidebar() {
