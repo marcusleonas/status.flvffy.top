@@ -21,30 +21,15 @@ import {
  */
 export const createTable = pgTableCreator((name) => `status_${name}`);
 
-export const posts = createTable(
-  "post",
-  {
-    id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
-    name: varchar("name", { length: 256 }),
-    createdAt: timestamp("created_at", { withTimezone: true })
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
-    updatedAt: timestamp("updated_at", { withTimezone: true }).$onUpdate(
-      () => new Date(),
-    ),
-  },
-  (example) => ({
-    nameIndex: index("name_idx").on(example.name),
-  }),
-);
-
 export const status = createTable("status", {
-  id: serial("id").primaryKey(),
   status: text("status").notNull(),
   ownerId: text("owner_id")
     .notNull()
-    .references(() => user.id),
-  createdAt: timestamp("created_at").notNull(),
+    .references(() => user.id, { onDelete: "cascade" }),
+  updated_at: timestamp("updated_at", { withTimezone: true, mode: "string" })
+    .default(sql`(now() AT TIME ZONE 'utc'::text)`)
+    .notNull()
+    .$onUpdate(() => sql`(now() AT TIME ZONE 'utc'::text)`),
 });
 
 // BETTERAUTH

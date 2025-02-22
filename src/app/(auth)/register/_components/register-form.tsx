@@ -17,6 +17,7 @@ import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { createEmptyStatus } from "./actions";
 
 export const registerSchema = z.object({
   email: z.string().email(),
@@ -44,7 +45,7 @@ export function RegisterForm() {
   async function onSubmit(values: z.infer<typeof registerSchema>) {
     console.log(values);
 
-    await authClient.signUp.email(
+    const { data } = await authClient.signUp.email(
       {
         email: values.email,
         name: values.username,
@@ -52,14 +53,20 @@ export function RegisterForm() {
         callbackURL: "/",
       },
       {
-        onSuccess: () => {
-          router.push("/");
-        },
         onError: () => {
           toast("Something went wrong!");
+          return;
         },
       },
     );
+
+    toast("Account created. Please wait...");
+
+    if (data) {
+      await createEmptyStatus(data?.user.id);
+    }
+
+    router.push("/");
   }
 
   return (

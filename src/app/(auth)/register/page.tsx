@@ -2,6 +2,12 @@ import { headers } from "next/headers";
 import { auth } from "~/server/auth";
 import { RegisterForm } from "./_components/register-form";
 
+import { type Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Register | status.flvffy.top",
+  icons: [{ rel: "icon", url: "/favicon.ico" }],
+};
+
 export default async function Page() {
   const session = await auth.api.getSession({
     headers: await headers(),
