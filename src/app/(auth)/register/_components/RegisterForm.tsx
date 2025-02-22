@@ -1,21 +1,23 @@
 "use client";
 
-export async function RegisterForm() {
+import { Input } from "~/components/ui/input";
+
+export function RegisterForm() {
   return (
-    <form action="">
+    <form action="" className="space-y-4 pt-4">
       <div>
         <label htmlFor="email">Email</label>
-        <input type="email" name="email" />
+        <Input type="email" name="email" />
       </div>
 
       <div>
         <label htmlFor="password">Password</label>
-        <input type="password" name="password" />
+        <Input type="password" name="password" />
       </div>
 
       <div>
         <label htmlFor="username">Username</label>
-        <input type="text" name="username" />
+        <Input type="text" name="username" />
       </div>
     </form>
   );

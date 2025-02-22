@@ -14,7 +14,7 @@ export default async function Page() {
 
   return (
     <section>
-      <h1 className="text-xl font-semibold">register</h1>
+      <h1 className="text-xl font-semibold">Register</h1>
       <RegisterForm />
     </section>
   );
