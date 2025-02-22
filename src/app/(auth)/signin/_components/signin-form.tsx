@@ -50,8 +50,12 @@ export function SignInForm() {
           toast("Signed in!");
           router.replace("/");
         },
-        onError: () => {
-          toast("Something went wrong!");
+        onError: (ctx) => {
+          if (ctx.error.status === 403) {
+            toast("Please verify your email address before logging in.");
+          } else {
+            toast("Something went wrong!");
+          }
         },
       },
     );

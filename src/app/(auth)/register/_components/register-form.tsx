@@ -60,13 +60,15 @@ export function RegisterForm() {
       },
     );
 
-    toast("Account created. Please wait...");
+    toast(
+      "Account created. Please check your email for a verification link before signing in.",
+    );
 
     if (data) {
       await createEmptyStatus(data?.user.id);
     }
 
-    router.push("/");
+    router.push("/signin");
   }
 
   return (
