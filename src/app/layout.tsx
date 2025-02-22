@@ -2,6 +2,8 @@ import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
+import Link from "next/link";
+import { Sidebar } from "~/components/sidebar";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -16,9 +18,7 @@ export default function RootLayout({
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
         <main className="mx-auto my-8 grid max-w-4xl grid-cols-[0.25fr_1fr]">
-          <aside>
-            <h2 className="font-semibold">status.flvffy.top</h2>
-          </aside>
+          <Sidebar />
           {children}
         </main>
       </body>
