@@ -1,7 +1,6 @@
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 import { auth } from "~/server/auth";
-import { RegisterForm } from "./_components/RegisterForm";
+import { RegisterForm } from "./_components/register-form";
 
 export default async function Page() {
   const session = await auth.api.getSession({
@@ -9,7 +8,11 @@ export default async function Page() {
   });
 
   if (session) {
-    return redirect("/");
+    return (
+      <section>
+        <p>Already logged in.</p>
+      </section>
+    );
   }
 
   return (

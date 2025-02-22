@@ -2,8 +2,8 @@ import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
-import Link from "next/link";
 import { Sidebar } from "~/components/sidebar";
+import { Toaster } from "~/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -20,6 +20,7 @@ export default function RootLayout({
         <main className="mx-auto my-8 grid max-w-4xl grid-cols-[0.25fr_1fr]">
           <Sidebar />
           {children}
+          <Toaster />
         </main>
       </body>
     </html>
