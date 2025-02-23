@@ -20,7 +20,7 @@ export default async function Page() {
 
       <p className="pt-4">Get status via API:</p>
       <Input
-        defaultValue={`https://status.flvffy.top/api/status/${session.user.id}`}
+        defaultValue={`https://status.flvffy.top/api/status/${session.user.username}`}
         readOnly
       />
 
@@ -42,7 +42,7 @@ export default async function Page() {
         className="resize-none"
         defaultValue={`function getStatus() {
   fetch(
-    "https://status.flvffy.top/api/status/${session.user.id}"
+    "https://status.flvffy.top/api/status/${session.user.username}"
   ).then(async (value) => {
     const json = await value.json(); // get the json result from the api
     const statusText = document.querySelector("#status-text");
