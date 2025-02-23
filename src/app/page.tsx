@@ -50,7 +50,8 @@ export default async function HomePage() {
           <pre>
             <code>
               {`{
-  status: string,
+  status: number, // status of the response (e.g. 200 for OK, 404 for Not Found)
+  message: string, // message
   userId: string,
   lastUpdated: string,
 }`}
