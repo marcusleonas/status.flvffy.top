@@ -9,9 +9,16 @@ export async function GET(
     where: (t, { eq }) => eq(t.ownerId, userId),
   });
 
-  return Response.json({
-    status: status?.status,
-    userId: status?.ownerId,
-    lastUpdated: status?.updated_at,
-  });
+  return Response.json(
+    {
+      status: status?.status,
+      userId: status?.ownerId,
+      lastUpdated: status?.updated_at,
+    },
+    {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    },
+  );
 }
