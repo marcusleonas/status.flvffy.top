@@ -9,6 +9,12 @@ export async function getUserByUsername(username: string) {
   });
 }
 
+export async function getUserById(userId: string) {
+  return await db.query.user.findFirst({
+    where: (t, { eq }) => eq(t.id, userId),
+  });
+}
+
 export async function checkUsernameAvailability(username: string) {
   const res = await db.query.user.findFirst({
     where: (t, { eq }) => eq(t.username, username),
@@ -19,10 +25,10 @@ export async function checkUsernameAvailability(username: string) {
 
 export async function getAllStatus(limit?: number, withUser?: boolean) {
   return await db.query.status.findMany({
-    limit: limit ?? 0,
-    with: {
-      user: withUser ?? false,
-    },
+    limit: limit,
+    // with: {
+    //   user: withUser,
+    // },
   });
 }
 
