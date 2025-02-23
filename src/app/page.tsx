@@ -62,7 +62,7 @@ export default async function HomePage() {
             <code>
               {`function getStatus() {
 fetch(
-    "https://status.flvffy.top/api/status/<user-id>" // copy this url from the home page
+    "https://status.flvffy.top/api/status/${session.user.id}" // copy this url from the home page
   ).then(async (value) => {
     const json = await value.json(); // get the json result from the api
     const statusText = document.querySelector("#status-text");
