@@ -17,9 +17,12 @@ export async function checkUsernameAvailability(username: string) {
   return !res;
 }
 
-export async function getAllStatus(limit?: number) {
+export async function getAllStatus(limit?: number, withUser?: boolean) {
   return await db.query.status.findMany({
     limit: limit ?? 0,
+    with: {
+      user: withUser ?? false,
+    },
   });
 }
 
