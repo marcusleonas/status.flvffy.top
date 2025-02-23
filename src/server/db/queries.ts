@@ -17,6 +17,12 @@ export async function checkUsernameAvailability(username: string) {
   return !res;
 }
 
+export async function getAllStatus(limit?: number) {
+  return await db.query.status.findMany({
+    limit: limit ?? 0,
+  });
+}
+
 export async function getAllStatusByUserId(userId: string) {
   return await db.query.status.findMany({
     where: (t, { eq }) => eq(t.ownerId, userId),
