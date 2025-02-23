@@ -2,11 +2,11 @@ import { db } from "~/server/db";
 
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ userId: string }> },
+  { params }: { params: Promise<{ username: string }> },
 ) {
-  const userId = (await params).userId;
+  const username = (await params).username;
   const status = await db.query.status.findFirst({
-    where: (t, { eq }) => eq(t.ownerId, userId),
+    where: (t, { eq }) => eq(t.ownerId, username),
   });
 
   if (status) {
@@ -15,7 +15,7 @@ export async function GET(
         status: 200,
         message: status?.status,
         userId: status?.ownerId,
-        lastUpdated: status?.updated_at,
+        lastUpdated: status.created_at,
       },
       {
         headers: {
@@ -28,7 +28,7 @@ export async function GET(
   return Response.json(
     {
       status: 404,
-      message: "user not found",
+      message: "User not found.",
     },
     {
       headers: {
