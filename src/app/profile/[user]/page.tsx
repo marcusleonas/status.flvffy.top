@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import getUserByUsername from "~/server/db/queries";
+import { getUserByUsername } from "~/server/db/queries";
 
 export default async function Page({
   params,

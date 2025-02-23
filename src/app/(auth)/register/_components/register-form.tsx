@@ -17,6 +17,7 @@ import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { checkUsernameAvailability } from "~/server/db/queries";
 
 export const registerSchema = z.object({
   email: z.string().email(),
@@ -43,6 +44,12 @@ export function RegisterForm() {
 
   async function onSubmit(values: z.infer<typeof registerSchema>) {
     console.log(values);
+
+    const usernameAvailable = await checkUsernameAvailability(values.username);
+    if (!usernameAvailable) {
+      toast("Username taken! Please choose another username.");
+      return;
+    }
 
     await authClient.signUp.email(
       {
