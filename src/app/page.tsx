@@ -65,7 +65,9 @@ export default async function HomePage() {
   ).then(async (value) => {
     const json = await value.json(); // get the json result from the api
     const statusText = document.querySelector("#status-text");
-    statusText.innerHTML = json["status"]; # set statusText to the status result.
+    if (json["status"] == 200) { // check if status code is 200 for OK
+      statusText.innerHTML = json["message"]; # set statusText to the status result.
+    }
   });
 }`}
             </code>
