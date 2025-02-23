@@ -39,41 +39,6 @@ export default async function HomePage() {
           <SetStatusForm currentStatus={currentStatus?.status ?? ""} />
 
           <SignOutButton className="mt-4" />
-
-          <p className="pt-4">Get status via API:</p>
-          <Input
-            defaultValue={`https://status.flvffy.top/api/status/${session.user.id}`}
-            readOnly
-          />
-
-          <p className="pt-4">Returns:</p>
-          <pre>
-            <code>
-              {`{
-  status: number, // status of the response (e.g. 200 for OK, 404 for Not Found)
-  message: string, // message
-  userId: string,
-  lastUpdated: string,
-}`}
-            </code>
-          </pre>
-          <p className="pt-4">Example JS Usage: </p>
-          <pre>
-            <code>
-              {`function getStatus() {
-fetch(
-    "https://status.flvffy.top/api/status/${session.user.id}" // copy this url from the home page
-  ).then(async (value) => {
-    const json = await value.json(); // get the json result from the api
-    const statusText = document.querySelector("#status-text");
-    if (json["status"] == 200) {
-      // check if status code is 200 for OK
-      statusText.innerHTML = json["message"]; // set statusText to the status result.
-    }
-  });
-}`}
-            </code>
-          </pre>
         </div>
       )}
     </section>
