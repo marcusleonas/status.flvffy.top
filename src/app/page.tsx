@@ -60,13 +60,14 @@ export default async function HomePage() {
           <pre>
             <code>
               {`function getStatus() {
-  fetch(
+fetch(
     "https://status.flvffy.top/api/status/<user-id>" // copy this url from the home page
   ).then(async (value) => {
     const json = await value.json(); // get the json result from the api
     const statusText = document.querySelector("#status-text");
-    if (json["status"] == 200) { // check if status code is 200 for OK
-      statusText.innerHTML = json["message"]; # set statusText to the status result.
+    if (json["status"] == 200) {
+      // check if status code is 200 for OK
+      statusText.innerHTML = json["message"]; // set statusText to the status result.
     }
   });
 }`}
