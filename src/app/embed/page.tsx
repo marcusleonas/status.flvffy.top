@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { Input } from "~/components/ui/input";
+import { Textarea } from "~/components/ui/textarea";
 import { auth } from "~/server/auth";
 
 export default async function Page() {
@@ -24,20 +25,22 @@ export default async function Page() {
       />
 
       <p className="pt-4">Returns:</p>
-      <pre>
-        <code>
-          {`{
+      <Textarea
+        rows={6}
+        className="resize-none"
+        defaultValue={`{
   status: number, // status code of the response
   message: string, // user's current status
   userId: string,
   lastUpdated: string,
 }`}
-        </code>
-      </pre>
+        readOnly
+      />
       <p className="pt-4">Example JS Usage: </p>
-      <pre>
-        <code>
-          {`function getStatus() {
+      <Textarea
+        rows={12}
+        className="resize-none"
+        defaultValue={`function getStatus() {
   fetch(
     "https://status.flvffy.top/api/status/${session.user.id}"
   ).then(async (value) => {
@@ -49,8 +52,8 @@ export default async function Page() {
     }
   });
 }`}
-        </code>
-      </pre>
+        readOnly
+      />
     </section>
   );
 }
