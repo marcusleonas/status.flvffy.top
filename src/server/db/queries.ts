@@ -17,7 +17,7 @@ export async function checkUsernameAvailability(username: string) {
   return !res;
 }
 
-export async function getAllStatus(userId: string) {
+export async function getAllStatusByUserId(userId: string) {
   return await db.query.status.findMany({
     where: (t, { eq }) => eq(t.ownerId, userId),
     orderBy: (t) => desc(t.created_at),

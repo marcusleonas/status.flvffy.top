@@ -2,7 +2,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { getTimeSince } from "~/lib/time";
 import { auth } from "~/server/auth";
-import { getAllStatus } from "~/server/db/queries";
+import { getAllStatusByUserId } from "~/server/db/queries";
 
 export default async function Page() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -11,7 +11,7 @@ export default async function Page() {
     return redirect("/signin");
   }
 
-  const allStatus = await getAllStatus(session.user.id);
+  const allStatus = await getAllStatusByUserId(session.user.id);
 
   return (
     <section className="flex flex-col gap-2">
