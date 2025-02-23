@@ -47,7 +47,8 @@ export function RegisterForm() {
     await authClient.signUp.email(
       {
         email: values.email,
-        name: values.username,
+        name: "",
+        username: values.username,
         password: values.password,
         callbackURL: "/",
       },
