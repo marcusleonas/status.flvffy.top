@@ -44,7 +44,7 @@ export function RegisterForm() {
   async function onSubmit(values: z.infer<typeof registerSchema>) {
     console.log(values);
 
-    const { data } = await authClient.signUp.email(
+    await authClient.signUp.email(
       {
         email: values.email,
         name: values.username,
