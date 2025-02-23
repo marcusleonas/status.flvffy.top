@@ -26,10 +26,9 @@ export const status = createTable("status", {
   ownerId: text("owner_id")
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
-  updated_at: timestamp("updated_at", { withTimezone: true, mode: "string" })
+  created_at: timestamp("created_at", { withTimezone: true, mode: "string" })
     .default(sql`(now() AT TIME ZONE 'utc'::text)`)
-    .notNull()
-    .$onUpdate(() => sql`(now() AT TIME ZONE 'utc'::text)`),
+    .notNull(),
 });
 
 // BETTERAUTH

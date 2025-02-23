@@ -17,7 +17,6 @@ import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { createEmptyStatus } from "./actions";
 
 export const registerSchema = z.object({
   email: z.string().email(),
@@ -63,10 +62,6 @@ export function RegisterForm() {
     toast(
       "Account created. Please check your email for a verification link before signing in.",
     );
-
-    if (data) {
-      await createEmptyStatus(data?.user.id);
-    }
 
     router.push("/signin");
   }

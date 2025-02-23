@@ -1,6 +1,5 @@
 "use server";
 
-import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { auth } from "~/server/auth";
 import { db } from "~/server/db";
@@ -18,10 +17,10 @@ export async function updateStatus(status: string) {
     };
   }
 
-  await db
-    .update(schemaStatus)
-    .set({ status })
-    .where(eq(schemaStatus.ownerId, session.user.id));
+  await db.insert(schemaStatus).values({
+    status: status,
+    ownerId: session.user.id,
+  });
 
   return {
     success: true,
