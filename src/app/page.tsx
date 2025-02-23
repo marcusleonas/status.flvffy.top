@@ -1,10 +1,8 @@
 import { headers } from "next/headers";
-import { Button } from "~/components/ui/button";
 import { auth } from "~/server/auth";
 
 import { type Metadata } from "next";
 import { SignOutButton } from "~/components/auth-buttons";
-import { Input } from "~/components/ui/input";
 import { SetStatusForm } from "./_components/set-form";
 import { db } from "~/server/db";
 import { desc } from "drizzle-orm";
