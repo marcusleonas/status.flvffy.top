@@ -9,11 +9,26 @@ export async function GET(
     where: (t, { eq }) => eq(t.ownerId, userId),
   });
 
+  if (status) {
+    return Response.json(
+      {
+        status: 200,
+        message: status?.status,
+        userId: status?.ownerId,
+        lastUpdated: status?.updated_at,
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      },
+    );
+  }
+
   return Response.json(
     {
-      status: status?.status,
-      userId: status?.ownerId,
-      lastUpdated: status?.updated_at,
+      status: 404,
+      message: "user not found",
     },
     {
       headers: {
