@@ -22,7 +22,7 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/", text: "Home" },
       { href: "/register", text: "Register", authLevel: "unauth" },
       { href: "/signin", text: "Sign In", authLevel: "unauth" },
-      { href: "/embed", text: "Embed" },
+      { href: "/embed", text: "Embed", authLevel: "auth" },
       { href: "/terms", text: "Terms of Service" },
     ],
   },
