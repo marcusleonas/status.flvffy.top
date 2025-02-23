@@ -45,9 +45,31 @@ export default async function HomePage() {
             defaultValue={`https://status.flvffy.top/api/status/${session.user.id}`}
             readOnly
           />
-          <p>
-            Returns: {`{ status: string, userId: string, lastUpdated: string }`}
-          </p>
+
+          <p className="pt-4">Returns:</p>
+          <pre>
+            <code>
+              {`{
+  status: string,
+  userId: string,
+  lastUpdated: string,
+}`}
+            </code>
+          </pre>
+          <p className="pt-4">Example JS Usage: </p>
+          <pre>
+            <code>
+              {`function getStatus() {
+  fetch(
+    "https://status.flvffy.top/api/status/<user-id>" // copy this url from the home page
+  ).then(async (value) => {
+    const json = await value.json(); // get the json result from the api
+    const statusText = document.querySelector("#status-text");
+    statusText.innerHTML = json["status"]; # set statusText to the status result.
+  });
+}`}
+            </code>
+          </pre>
         </div>
       )}
     </section>
