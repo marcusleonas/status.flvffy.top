@@ -6,6 +6,10 @@ import { SignOutButton } from "~/components/auth-buttons";
 import { SetStatusForm } from "./_components/set-form";
 import { db } from "~/server/db";
 import { desc } from "drizzle-orm";
+import { getAllStatus, getUserById } from "~/server/db/queries";
+import { getTimeSince } from "~/lib/time";
+import { Suspense } from "react";
+import Link from "next/link";
 export const metadata: Metadata = {
   title: "Home | status.flvffy.top",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
@@ -24,6 +28,8 @@ export default async function HomePage() {
     });
   }
 
+  const recentStatus = await getAllStatus(10, true);
+
   return (
     <section>
       <h1>status.flvffy.top</h1>
@@ -31,6 +37,29 @@ export default async function HomePage() {
         a simple website for displaying your current status. designed for
         neocities websites.
       </p>
+
+      <div className="flex flex-col divide-y divide-gray-950">
+        {recentStatus.map(async (status) => {
+          const user = await getUserById(status.ownerId);
+
+          return (
+            <div className="py-4" key={status.id}>
+              <p>{status.status}</p>
+              <small className="text-sm">
+                {getTimeSince(new Date(status.created_at))} •{" "}
+                <Link
+                  className="font-medium text-purple-700 hover:underline"
+                  href={`/profile/${user?.username}`}
+                >
+                  {user?.username}
+                </Link>
+              </small>
+            </div>
+          );
+        })}
+
+        {recentStatus.length === 0 && <p>No status found.</p>}
+      </div>
 
       {session && (
         <div className="pt-4">
