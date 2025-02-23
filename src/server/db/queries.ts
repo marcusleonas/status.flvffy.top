@@ -1,5 +1,6 @@
 "use server";
 
+import { desc } from "drizzle-orm";
 import { db } from ".";
 
 export async function getUserByUsername(username: string) {
@@ -14,4 +15,11 @@ export async function checkUsernameAvailability(username: string) {
   });
 
   return !res;
+}
+
+export async function getAllStatus(userId: string) {
+  return await db.query.status.findMany({
+    where: (t, { eq }) => eq(t.ownerId, userId),
+    orderBy: (t) => desc(t.created_at),
+  });
 }
