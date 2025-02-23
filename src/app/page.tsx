@@ -34,7 +34,9 @@ export default async function HomePage() {
 
       {session && (
         <div className="pt-4">
-          <p className="pb-4 font-medium">Logged in as {session.user.name}.</p>
+          <p className="pb-4 font-medium">
+            Logged in as {session.user.username}.
+          </p>
 
           <SetStatusForm currentStatus={currentStatus?.status ?? ""} />
 
