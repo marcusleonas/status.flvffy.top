@@ -1,15 +1,17 @@
 import { headers } from "next/headers";
 import { auth } from "~/server/auth";
-
 import { type Metadata } from "next";
+
 import { SignOutButton } from "~/components/auth-buttons";
 import { SetStatusForm } from "./_components/set-form";
+import Link from "next/link";
+
 import { db } from "~/server/db";
 import { desc } from "drizzle-orm";
 import { getAllStatus, getUserById } from "~/server/db/queries";
+
 import { getTimeSince } from "~/lib/time";
-import { Suspense } from "react";
-import Link from "next/link";
+
 export const metadata: Metadata = {
   title: "Home | status.flvffy.top",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
